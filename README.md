@@ -1,4 +1,4 @@
-# Web App Boilerplate
+# CS348 Project
 
 This project is a boilerplate for a simple web application using the following tech stack:
 
