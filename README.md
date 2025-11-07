@@ -1,4 +1,4 @@
-# To-Do List Web Application
+# Taskr (CS348 Project)
 
 This is a full-stack to-do list application built with Next.js and MongoDB. It allows users to manage courses and their associated tasks with complete CRUD operations and advanced filtering capabilities.
 
