@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "next": "latest",
+    "npm": "^10.9.4",
     "react": "latest",
     "react-dom": "latest"
   }
