@@ -9,7 +9,7 @@ const classSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  userId: {
+  userId: { // foreign key to User collection
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true

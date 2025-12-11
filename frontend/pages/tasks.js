@@ -31,7 +31,7 @@ export default function Tasks() {
 
   const [showReport, setShowReport] = useState(false);
 
-  // Fetch all classes for the dropdown (dynamic loading as per requirement d)
+  // Fetch all classes for the dropdown (dynamic loading as per requirement c)
   const fetchClasses = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/classes');
@@ -472,7 +472,7 @@ export default function Tasks() {
                   <td>{task.classId.name}</td>
                   <td>{task.description || 'N/A'}</td>
                   <td>{task.estimatedTime || 'N/A'}</td>
-                  <td>{task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'N/A'}</td>
+                  <td>{task.dueDate ? task.dueDate.split('T')[0] : 'N/A'}</td>
                   <td>{task.priority}</td>
                   <td>{task.completed ? '✓ Complete' : '○ Incomplete'}</td>
                   <td>

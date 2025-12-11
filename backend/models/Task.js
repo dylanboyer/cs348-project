@@ -9,7 +9,7 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  classId: {
+  classId: { // foreign key to Class collection
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Class',
     required: true
