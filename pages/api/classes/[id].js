@@ -60,6 +60,9 @@ export default async function handler(req, res) {
 
         // Execute deletion within a transaction to ensure atomicity
         // Either BOTH class and tasks are deleted, or NEITHER are deleted
+
+
+        // TRANSACTION
         await executeInTransaction(async (session) => {
           // Delete all tasks associated with this class
           const taskDeleteResult = await Task.deleteMany(
@@ -72,6 +75,7 @@ export default async function handler(req, res) {
           
           console.log(`Transaction completed: Deleted class ${id} and ${taskDeleteResult.deletedCount} associated tasks`);
         });
+        // ------------------------------
         
         res.status(200).json({ 
           message: 'Class and associated tasks deleted successfully',
