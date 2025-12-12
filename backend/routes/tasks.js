@@ -2,14 +2,21 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
 
+// Helper function to sanitize input (prevent NoSQL injection)
+const sanitizeString = (value) => {
+  if (typeof value !== 'string') return '';
+  // Remove any characters that could be used for NoSQL injection
+  return value.replace(/[${}]/g, '');
+};
+
 // Get all tasks (with optional filtering)
 router.get('/', async (req, res) => {
   try {
     const filter = {};
     
-    // Filter by classId
+    // Filter by classId (sanitize to prevent injection)
     if (req.query.classId) {
-      filter.classId = req.query.classId;
+      filter.classId = sanitizeString(req.query.classId);
     }
     
     // Filter by completed status
@@ -17,9 +24,9 @@ router.get('/', async (req, res) => {
       filter.completed = req.query.completed === 'true';
     }
     
-    // Filter by priority
+    // Filter by priority (sanitize to prevent injection)
     if (req.query.priority) {
-      filter.priority = req.query.priority;
+      filter.priority = sanitizeString(req.query.priority);
     }
     
     // Filter by estimated time range
@@ -67,13 +74,13 @@ router.get('/:id', async (req, res) => {
 // Create a task
 router.post('/', async (req, res) => {
   const task = new Task({
-    name: req.body.name,
-    description: req.body.description,
-    classId: req.body.classId,
+    name: sanitizeString(req.body.name || ''),
+    description: sanitizeString(req.body.description || ''),
+    classId: sanitizeString(req.body.classId || ''),
     estimatedTime: req.body.estimatedTime,
     dueDate: req.body.dueDate,
     completed: req.body.completed || false,
-    priority: req.body.priority || 'medium'
+    priority: sanitizeString(req.body.priority || 'medium')
   });
 
   try {
@@ -94,13 +101,13 @@ router.put('/:id', async (req, res) => {
     }
 
     if (req.body.name != null) {
-      task.name = req.body.name;
+      task.name = sanitizeString(req.body.name);
     }
     if (req.body.description != null) {
-      task.description = req.body.description;
+      task.description = sanitizeString(req.body.description);
     }
     if (req.body.classId != null) {
-      task.classId = req.body.classId;
+      task.classId = sanitizeString(req.body.classId);
     }
     if (req.body.estimatedTime != null) {
       task.estimatedTime = req.body.estimatedTime;
@@ -112,7 +119,7 @@ router.put('/:id', async (req, res) => {
       task.completed = req.body.completed;
     }
     if (req.body.priority != null) {
-      task.priority = req.body.priority;
+      task.priority = sanitizeString(req.body.priority);
     }
 
     const updatedTask = await task.save();

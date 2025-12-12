@@ -19,6 +19,7 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // Import routes
 const classRoutes = require('./routes/classes');
 const taskRoutes = require('./routes/tasks');
+const bulkOperationsRoutes = require('./routes/bulkOperations');
 
 // Routes
 app.get('/', (req, res) => {
@@ -27,5 +28,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/classes', classRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/bulk', bulkOperationsRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

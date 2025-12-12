@@ -6,9 +6,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "latest",
-    "mongoose": "latest",
     "cors": "latest",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "express": "latest",
+    "mongoose": "latest"
   }
 }

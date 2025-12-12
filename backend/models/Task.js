@@ -12,7 +12,8 @@ const taskSchema = new mongoose.Schema({
   classId: { // foreign key to Class collection
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Class',
-    required: true
+    required: true,
+    index: true // INDEX: Critical for filtering tasks by class and cascade deletes
   },
   estimatedTime: {
     type: Number, // in minutes
