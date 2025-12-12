@@ -35,7 +35,7 @@ This is a full-stack to-do list application built with Next.js and MongoDB. It a
    ```
 
 3. **IMPORTANT:** Update the MongoDB connection string in `.env`:
-   - Open `backend/env.js`
+   - Open `backend/.env`
    - Find line: `MONGO_URI = 'your_mongodb_connection_string_here';`
    - Replace with your actual MongoDB connection string
 
