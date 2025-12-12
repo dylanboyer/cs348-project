@@ -12,7 +12,7 @@ export default function Home() {
   // Fetch all classes
   const fetchClasses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/classes');
+      const response = await fetch('/api/classes');
       const data = await response.json();
       setClasses(data);
     } catch (error) {
@@ -36,7 +36,7 @@ export default function Home() {
   const handleAddClass = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/classes', {
+      const response = await fetch('/api/classes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export default function Home() {
   const handleUpdateClass = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/classes/${editingId}`, {
+      const response = await fetch(`/api/classes/${editingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function Home() {
   const handleDeleteClass = async (id) => {
     if (confirm('Are you sure you want to delete this class and all its tasks?')) {
       try {
-        await fetch(`http://localhost:5000/api/classes/${id}`, {
+        await fetch(`/api/classes/${id}`, {
           method: 'DELETE',
         });
         setClasses(classes.filter(c => c._id !== id));
@@ -189,3 +189,4 @@ export default function Home() {
     </div>
   );
 }
+

@@ -8,9 +8,9 @@
  */
 
 const mongoose = require('mongoose');
-const Class = require('./models/Class');
-const Task = require('./models/Task');
-const { executeInTransaction, isTransactionSupported } = require('./utils/transactionHelper');
+const Class = require('./lib/models/Class');
+const Task = require('./lib/models/Task');
+const { executeInTransaction, isTransactionSupported } = require('./lib/utils/transactionHelper');
 
 // MongoDB connection string
 const MONGO_URI = "mongodb+srv://dylan:informal1@taskr.gwizy5a.mongodb.net/?appName=taskr";

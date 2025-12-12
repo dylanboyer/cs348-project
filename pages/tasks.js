@@ -34,7 +34,7 @@ export default function Tasks() {
   // Fetch all classes for the dropdown (dynamic loading as per requirement c)
   const fetchClasses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/classes');
+      const response = await fetch('/api/classes');
       const data = await response.json();
       setAllClasses(data);
     } catch (error) {
@@ -45,7 +45,7 @@ export default function Tasks() {
   // Fetch tasks with filters
   const fetchTasks = async () => {
     try {
-      let url = 'http://localhost:5000/api/tasks?';
+      let url = '/api/tasks?';
       
       if (classId) {
         url += `classId=${classId}&`;
@@ -127,7 +127,7 @@ export default function Tasks() {
   const handleAddTask = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch('/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ export default function Tasks() {
   const handleUpdateTask = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${editingId}`, {
+      const response = await fetch(`/api/tasks/${editingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ export default function Tasks() {
   const handleDeleteTask = async (id) => {
     if (confirm('Are you sure you want to delete this task?')) {
       try {
-        await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        await fetch(`/api/tasks/${id}`, {
           method: 'DELETE',
         });
         setTasks(tasks.filter(t => t._id !== id));
